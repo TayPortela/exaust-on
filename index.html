@@ -182,7 +182,7 @@
       }
 
       .logo {
-        max-width: 100%;
+        max-width: 10%;
         margin: 0 auto;
       }
 
@@ -254,6 +254,47 @@
       margin-bottom: 1rem;
     }
 
+    .vantagens {
+  background-color: #f7f7f7;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  border-radius: 12px;
+}
+
+.vantagens h3 {
+  font-size: 1.8rem;
+  color: #071f73;
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+
+.cards-vantagens {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.card-vantagem {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  max-width: 280px;
+  text-align: left;
+}
+
+.btn-solicite {
+  background-color: #f2630d;
+  color: white;
+  padding: 1rem 2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
   .whatsapp-float {
     position: fixed;
     width: 60px;
@@ -304,51 +345,120 @@
 
 .quem-somos {
   background-color: #f7f7f7;
-  padding: 3rem 1rem;
-  text-align: center;
+  padding: 4rem 1.5rem;
+  text-align: center; /* centraliza conteúdo inline, como h2 */
 }
 
 .quem-somos h2 {
   color: #071f73;
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  text-align: center; /* garante que o título esteja centralizado */
 }
 
 .quem-somos p {
-  max-width: 700px;
-  margin: 0 auto;
-  font-size: 1.1rem;
-  line-height: 1.6;
+  max-width: 1600px;
+  margin: 0 auto 1rem;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #333;
+  text-align: justify; /* justifica o parágrafo */
 }
 
+
 .parceiros {
-  background-color: #ffffff;
-  padding: 3rem 1rem;
+    background-color: #ffffff;
+    padding: 3rem 1rem;
+    text-align: center;
+  }
+
+  .parceiros h2 {
+    color: #071f73;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .parceiros-logos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+
+  .parceiros-logos img {
+    height: 50px;
+    max-width: 120px;
+    object-fit: contain;
+    transition: transform 0.3s;
+    filter: grayscale(100%);
+  }
+
+  .parceiros-logos img:hover {
+    transform: scale(1.1);
+    filter: grayscale(0%);
+  }
+
+
+.back-to-top {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  background-color: #071f73;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 9999;
+  text-decoration: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.contato {
+  padding: 2rem 1rem;
+  background-color: #f4f4f4;
   text-align: center;
 }
 
-.parceiros h2 {
-  color: #071f73;
-  font-size: 2rem;
-  margin-bottom: 2rem;
-}
-
-.parceiros-logos {
+.contato form {
+  max-width: 500px;
+  margin: auto;
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 1rem;
-  padding: 1rem 0;
 }
 
-.parceiros-logos img {
-  height: 10px;
-  object-fit: contain;
-  transition: transform 0.3s;
+.contato input,
+.contato textarea {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
 }
 
-.parceiros-logos img:hover {
-  transform: scale(1.1);
+.contato button {
+  background-color: #071f73;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.contato button:hover {
+  background-color: #f36118;
 }
 
 
@@ -356,16 +466,19 @@
 </head>
 <body>
 
+  <body id="topo">
   <nav>
     <div class="logo-menu">
-      <img src="img/logo_exaustON_branco.png" alt="Logo ExaustON" />
-    </div>
+  <a href="#topo">
+    <img src="img/logo_exaustON_branco.png" alt="Logo ExaustON" />
+  </a>
+</div>
 
     <div class="menu-toggle" id="menu-toggle">&#9776;</div>
 
     <ul id="nav-links">
       <li><a href="#como-funciona">Como Funciona</a></li>
-      <li><a href="#vantagens">Vantagens</a></li>
+      <li><a href="#quem-somos">Quem Somos</a></li>
       <li><a href="#contato">Contato</a></li>
     </ul>
   </nav>
@@ -379,7 +492,7 @@
       <div class="right-content">
         <h2>O controle inteligente para exaustores em prédios residenciais</h2>
         <div class="cta">
-          <a href="#contato">Solicite uma avaliação no seu prédio</a>
+          <a href="#contato" class="botao-avaliacao">Solicite uma avaliação no seu prédio</a>
         </div>
       </div>
     </div>
@@ -407,50 +520,82 @@
     </div>
   </section>
 
-  <section id="vantagens" class="card">
-    <h3 style="text-align:center;">Vantagens para seu condomínio</h3>
-    <ul class="beneficios">
-      <li>🧠 Automação prática com internet no exaustor;</li>
-      <li>🛠 Suporte técnico e manutenção especializada.</li>
-    </ul>
-
-    <div class="cta" style="text-align:center;">
-      <a href="#contato">Solicite uma avaliação no seu prédio</a>
+  <section class="vantagens">
+  <h3>Vantagens para seu condomínio</h3>
+  <div class="cards-vantagens">
+    <div class="card-vantagem">
+      <p>Automação prática com internet no exaustor;</p>
     </div>
-  </section>
+    <div class="card-vantagem">
+      <p>Suporte técnico e manutenção especializada.</p>
+    </div>
+  </div>
+  <button class="btn-solicite">Solicite uma avaliação no seu prédio</button>
+</section>
 
     <section id="quem-somos" class="quem-somos">
       <div class="container">
         <h2>Quem Somos</h2>
        <p>
-          A MR Elétrica é especializada em soluções elétricas residenciais, comerciais e industriais.
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a justo vel nulla vehicula tincidunt.
-          Donec vel ultricies elit. Aliquam erat volutpat. Integer ac dapibus augue.
-      </p>
-     </div>
-    </section>
+          Por Alison de Moraes Rodrigues</p>
 
-    <section id="parceiros" class="parceiros">
-      <div class="container">
-       <h2>Nossos Parceiros</h2>
+<p>Minha jornada começou cedo. Aos 12 anos, comecei a trabalhar com meu pai, que sempre foi eletricista em Tramandaí. 
+  Foi com ele que aprendi os primeiros passos na profissão, os valores do trabalho honesto e a 
+  importância de fazer um serviço bem feito.</p>
 
-         <div class="swiper mySwiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="img/MR eletrica - logo.pdf.png" alt="Parceiro 1"></div>
-            <div class="swiper-slide"><img src="img/logo_mael.png" alt="Parceiro 2"></div>
-            <div class="swiper-slide"><img src="img/logo_leads.png" alt="Parceiro 3"></div>
-         </div>
-        </div>
-      </div>
-    </section>
+<p>Movido por essa paixão, decidi me especializar e estudei para me tornar eletrotécnico. 
+Com o tempo, fui ganhando experiência e consolidando minha própria forma de trabalhar — mas sempre com o 
+mesmo espírito que aprendi com meu pai.</p>
 
-  <section id="contato" class="card">
-    <h3 style="text-align:center;">Entre em contato</h3>
-    <p style="text-align:center;">Fale conosco para agendar uma visita e modernizar o sistema do seu prédio!</p>
-    <div class="cta" style="text-align:center;">
-      <a href="mailto:contato@exauston.com.br">Enviar e-mail</a>
-    </div>
-  </section>
+<p>Quando chegou a hora de criar minha empresa, fiz questão de homenagear minhas raízes. 
+  Usei meu sobrenome e criei a MR Elétrica, de Moraes Rodrigues, mantendo vivo o legado de quem me ensinou tudo.</p>
+
+<p>Hoje, aos 31 anos, sigo com a mesma dedicação, mas com um olhar voltado para a inovação. 
+  Observando um problema recorrente em muitos condomínios — a má gestão e o desperdício de energia 
+  nos sistemas de exaustão — desenvolvi uma solução inteligente: o Exast-ON.</p>
+
+<p>O Exast-ON é um aplicativo voltado para a automação dos exaustores em áreas como cozinhas, 
+  garagens e espaços técnicos. Com ele, é possível controlar e programar o funcionamento dos 
+  equipamentos de forma eficiente, econômica e segura. É tecnologia aplicada para melhorar o 
+  dia a dia dos condomínios e reduzir custos com energia.</p>
+
+<p>A MR Elétrica é mais do que uma empresa. É uma história de família, evolução e compromisso com o futuro.</p>
+     
+  <section id="contato" class="contato">
+  <div class="container">
+    <h2>Entre em Contato</h2>
+    <form id="formContato" onsubmit="enviarParaWhatsApp(); return false;">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" required>
+
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="telefone">Telefone:</label>
+      <input type="tel" id="telefone" name="telefone" required>
+
+      <label for="mensagem">Mensagem:</label>
+      <textarea id="mensagem" name="mensagem" required></textarea>
+
+      <button type="submit">Enviar para WhatsApp</button>
+    </form>
+  </div>
+</section>
+
+<script>
+function enviarParaWhatsApp() {
+  const nome = document.getElementById("nome").value;
+  const email = document.getElementById("email").value;
+  const telefone = document.getElementById("telefone").value;
+  const mensagem = document.getElementById("mensagem").value;
+
+  const numeroWhatsApp = "5599999999999"; // Substitua pelo seu número com DDI (55) e DDD
+  const texto = `*Novo contato via site:*\n\n👤 *Nome:* ${nome}\n📧 *E-mail:* ${email}\n📞 *Telefone:* ${telefone}\n💬 *Mensagem:* ${mensagem}`;
+
+  const url = `https://wa.me/5551996673521?text=${encodeURIComponent(texto)}`;
+  window.open(url, '_blank');
+}
+</script>
 
   <footer>
     ExaustON - Tecnologia pensada para o conforto e controle predial.
@@ -486,6 +631,11 @@
   <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" />
 </a>
 
+<!-- Botão voltar ao topo -->
+<a href="#topo" class="back-to-top" aria-label="Voltar ao topo" title="Voltar ao topo">
+  ↑
+</a>
+
 <!-- RODAPÉ LEADS-->>
 <footer class="rodape-leads">
   <div class="conteudo-rodape">
@@ -497,6 +647,21 @@
 
 <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
+
+<script>
+  // Mostrar botão "voltar ao topo" ao rolar
+  const backToTopButton = document.querySelector('.back-to-top');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backToTopButton.classList.add('show');
+    } else {
+      backToTopButton.classList.remove('show');
+    }
+  });
+</script>
 
 
 </body>
