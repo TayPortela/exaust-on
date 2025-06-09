@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ExaustON | O Controle Inteligente do Seu Exaustor</title>
+  <link rel="icon" href="img/favicon/favicon-32x32.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: #f8f9fa;
+      color: #000;
+      line-height: 1.6;
+      padding-top: 70px;
+    }
+
+    nav {
+      background: #071f73;
+      padding: 1rem 2rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-menu img {
+      height: 40px;
+      width: auto;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      font-size: 1rem;
+    }
+
+    nav ul li a:hover {
+      color: #f36118;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        gap: 1rem;
+        background: #071f73;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        width: max-content;
+        min-width: 150px;
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    header {
+      background: #071f73;
+      color: #fff;
+      padding: 4rem 2rem 4rem;
+      text-align: left;
+    }
+
+    .header-container {
+      display: flex;
+      max-width: 960px;
+      margin: auto;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4rem;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      max-width: 350px;
+      flex-shrink: 0;
+    }
+
+    .logo img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .right-content {
+      max-width: 450px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .right-content h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .right-content p {
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin-top: -0.5rem;
+    }
+
+    .cta {
+      margin-top: 1rem;
+    }
+
+    .cta a {
+      background: #f36118;
+      color: white;
+      padding: 1rem 2rem;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+      display: inline-block;
+      max-width: fit-content;
+    }
+
+    .cta a:hover {
+      background: #d94e0d;
+    }
+
+    section {
+      padding: 2rem 1rem;
+      max-width: 960px;
+      margin: auto;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #f1f1f1;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .logo {
+        max-width: 100%;
+        margin: 0 auto;
+      }
+
+      .right-content {
+        max-width: 100%;
+        text-align: center;
+        align-items: center;
+      }
+
+      .right-content h2 {
+        font-size: 1.5rem;
+      }
+
+      .right-content p {
+        font-size: 1rem;
+      }
+    }
+
+    /* Cards com animação suave */
+    .card {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Estilo da nova seção funcionamento e cards */
+    .funcionamento h3 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .cards-beneficios {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .cards-beneficios .card {
+      background: #fff;
+      border: 1px solid #d1dce5;
+      border-radius: 12px;
+      padding: 1rem;
+      width: 200px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+      opacity: 0;
+      transform: translateY(50px);
+    }
+
+    .cards-beneficios .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .cards-beneficios .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .cards-beneficios .card img {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 1rem;
+    }
+
+  .whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+  }
+
+  .whatsapp-float:hover {
+    background-color: #1ebe57;
+  }
+
+  .whatsapp-float img {
+    width: 32px;
+    height: 32px;
+  }
+
+.rodape-leads {
+  background-color: #001F54; /* mesmo azul da primeira dobra */
+  padding: 2rem 1rem;
+  text-align: center;
+  color: #ffffff;
+}
+
+.conteudo-rodape {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.logo-leads {
+  width: 80px;
+  height: auto;
+  vertical-align: middle;
+}
+
+.quem-somos {
+  background-color: #f7f7f7;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.quem-somos h2 {
+  color: #071f73;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.quem-somos p {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.parceiros {
+  background-color: #ffffff;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.parceiros h2 {
+  color: #071f73;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.parceiros-logos {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.parceiros-logos img {
+  height: 10px;
+  object-fit: contain;
+  transition: transform 0.3s;
+}
+
+.parceiros-logos img:hover {
+  transform: scale(1.1);
+}
+
+
+</style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo-menu">
+      <img src="img/logo_exaustON_branco.png" alt="Logo ExaustON" />
+    </div>
+
+    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+
+    <ul id="nav-links">
+      <li><a href="#como-funciona">Como Funciona</a></li>
+      <li><a href="#vantagens">Vantagens</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </nav>
+  
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <img src="img/logo_exaustonBranco_3000x1000.png" alt="Logo ExaustON" />
+      </div>
+
+      <div class="right-content">
+        <h2>O controle inteligente para exaustores em prédios residenciais</h2>
+        <div class="cta">
+          <a href="#contato">Solicite uma avaliação no seu prédio</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="como-funciona" class="funcionamento">
+    <h3>Como funciona?</h3>
+    <div class="cards-beneficios">
+      <div class="card">
+        <img src="img/iconCard_instalação.png" alt="Instalação" />
+        <p>Instalação simples e rápida</p>
+      </div>
+      <div class="card">
+        <img src="img/qrcode_exaustonBranco_3000x3000.png" alt="QR Code" />
+        <p>Acesso via QR Code no ambiente</p>
+      </div>
+      <div class="card">
+        <img src="img/iconCard_paginaUnica.png" alt="Página web" />
+        <p>Página web exclusiva para controle</p>
+      </div>
+      <div class="card">
+        <img src="img/iconCard_acessoLocal.png" alt="Autorização local" />
+        <p>Acesso autorizado apenas no local</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="vantagens" class="card">
+    <h3 style="text-align:center;">Vantagens para seu condomínio</h3>
+    <ul class="beneficios">
+      <li>🧠 Automação prática com internet no exaustor;</li>
+      <li>🛠 Suporte técnico e manutenção especializada.</li>
+    </ul>
+
+    <div class="cta" style="text-align:center;">
+      <a href="#contato">Solicite uma avaliação no seu prédio</a>
+    </div>
+  </section>
+
+    <section id="quem-somos" class="quem-somos">
+      <div class="container">
+        <h2>Quem Somos</h2>
+       <p>
+          A MR Elétrica é especializada em soluções elétricas residenciais, comerciais e industriais.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a justo vel nulla vehicula tincidunt.
+          Donec vel ultricies elit. Aliquam erat volutpat. Integer ac dapibus augue.
+      </p>
+     </div>
+    </section>
+
+    <section id="parceiros" class="parceiros">
+      <div class="container">
+       <h2>Nossos Parceiros</h2>
+
+         <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="img/MR eletrica - logo.pdf.png" alt="Parceiro 1"></div>
+            <div class="swiper-slide"><img src="img/logo_mael.png" alt="Parceiro 2"></div>
+            <div class="swiper-slide"><img src="img/logo_leads.png" alt="Parceiro 3"></div>
+         </div>
+        </div>
+      </div>
+    </section>
+
+  <section id="contato" class="card">
+    <h3 style="text-align:center;">Entre em contato</h3>
+    <p style="text-align:center;">Fale conosco para agendar uma visita e modernizar o sistema do seu prédio!</p>
+    <div class="cta" style="text-align:center;">
+      <a href="mailto:contato@exauston.com.br">Enviar e-mail</a>
+    </div>
+  </section>
+
+  <footer>
+    ExaustON - Tecnologia pensada para o conforto e controle predial.
+  </footer>
+
+  <script>
+    // Toggle menu para mobile
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Animação com IntersectionObserver para os cards gerais e cards-beneficios
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    // Observa todos os cards na página (tanto os cards da seção funcionamento, quanto os cards das outras seções)
+    document.querySelectorAll('.card').forEach(card => {
+      observer.observe(card);
+    });
+  </script>
+
+  <!-- Botão WhatsApp flutuante -->
+  <a href="https://wa.me/555199835102" target="_blank" rel="noopener" class="whatsapp-float" aria-label="WhatsApp" title="Fale conosco no WhatsApp!">
+  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" />
+</a>
+
+<!-- RODAPÉ LEADS-->>
+<footer class="rodape-leads">
+  <div class="conteudo-rodape">
+    <p>Site produzido por</p>
+    <a href="https://leadsmidiasdigitais.com/" target="_blank" rel="noopener">
+    <img src="img/logo_leads.png" alt="" class="logo-leads"></a>
+  </div>
+</footer>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
+</body>
+</html>
